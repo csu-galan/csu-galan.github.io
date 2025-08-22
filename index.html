@@ -40,8 +40,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Logo */
@@ -51,8 +56,13 @@
         }
 
         .logo-container img {
-            max-width: 320px; /* ajusta tamaño según necesites */
+            max-width: 320px;
             height: auto;
+        }
+
+        /* Oculto dinámico */
+        #tituloPregradoContainer {
+            display: none;
         }
     </style>
 </head>
@@ -87,9 +97,9 @@
 
         <div class="flex">
             <label>
-    <input required type="date" class="input" id="fechaExpedicion">
-    <span>Fecha de expedición</span>
-</label>
+                <input required type="date" class="input" id="fechaExpedicion">
+                <span>Fecha de expedición</span>
+            </label>
 
             <label>
                 <input required placeholder="" type="text" class="input" id="ciudadExpedicion">
@@ -99,10 +109,9 @@
 
         <div class="flex">
             <label>
-    <input required type="date" class="input" id="fechaNacimiento">
-    <span>Fecha de nacimiento</span>
-</label>
-
+                <input required type="date" class="input" id="fechaNacimiento">
+                <span>Fecha de nacimiento</span>
+            </label>
 
             <label>
                 <input required placeholder="" type="text" class="input" id="lugarNacimiento">
@@ -115,33 +124,32 @@
             <span>EPS</span>
         </label>
 
-<label>
-    <select required class="input" id="grupoSanguineo">
-        <option value="" disabled selected></option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
-    </select>
-    <span>Grupo Sanguíneo</span>
-</label>
+        <label>
+            <select required class="input" id="grupoSanguineo">
+                <option value="" disabled selected></option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+            <span>Grupo Sanguíneo</span>
+        </label>
 
-<label>
-    <select required class="input" id="estadoCivil">
-        <option value="" disabled selected></option>
-        <option value="soltero">Soltero(a)</option>
-        <option value="casado">Casado(a)</option>
-        <option value="unionLibre">Unión Libre</option>
-        <option value="divorciado">Divorciado(a)</option>
-        <option value="viudo">Viudo(a)</option>
-    </select>
-    <span>Estado Civil</span>
-</label>
-
+        <label>
+            <select required class="input" id="estadoCivil">
+                <option value="" disabled selected></option>
+                <option value="soltero">Soltero(a)</option>
+                <option value="casado">Casado(a)</option>
+                <option value="unionLibre">Unión Libre</option>
+                <option value="divorciado">Divorciado(a)</option>
+                <option value="viudo">Viudo(a)</option>
+            </select>
+            <span>Estado Civil</span>
+        </label>
 
         <div class="flex">
             <label>
@@ -180,9 +188,59 @@
             <span>Colegio donde cursó el bachiller</span>
         </label>
 
+        <!-- Programa -->
         <label>
-            <input required placeholder="" type="text" class="input" id="carrera">
+            <select required class="input" id="nivel">
+                <option value="" disabled selected></option>
+                <option value="pregrado">Pregrado</option>
+                <option value="posgrado">Posgrado</option>
+            </select>
+            <span>Programa</span>
+        </label>
+        <label id="senaPregunta" style="display:none;">
+            <select class="input" id="esSena">
+                <option value="" disabled selected></option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+            <span>¿Es estudiante SENA?</span>
+        </label>
+
+        <!-- Programa SENA (oculto al inicio) -->
+        <label id="programaSenaLabel" style="display:none;">
+            <input class="input" type="text" id="programaSena">
+            <span>Programa procedencia SENA</span>
+        </label>
+
+        <!-- Carrera -->
+        <label>
+            <select required class="input" id="carrera">
+                <option value="" disabled selected></option>
+            </select>
             <span>Carrera por estudiar</span>
+        </label>
+
+        <!-- Pregunta SENA (oculto al inicio) -->
+
+
+
+        <!-- Campo dinámico título pregrado -->
+        <label id="tituloPregradoContainer">
+            <input placeholder="" type="text" class="input" id="tituloPregrado">
+            <span>Título Pregrado</span>
+        </label>
+
+        <!-- Asesor -->
+        <label>
+            <select required class="input" id="asesor">
+                <option value="" disabled selected></option>
+                <option value="Sebastian">Sebastián</option>
+                <option value="Rosa">Rosa</option>
+                <option value="Daniel">Daniel</option>
+                <option value="Diana">Diana</option>
+                <option value="Ninguno">Ninguno</option>
+            </select>
+            <span>Asesor</span>
         </label>
 
         <p class="title">Referencia Familiar (Contacto de emergencia)</p>
@@ -211,56 +269,165 @@
     </form>
 
     <script>
+        const carreras = {
+            pregrado: [
+                "Licenciatura en Educación Infantil",
+                "Marketing de Negocios",
+                "Finanzas y Negocios Internacionales",
+                "Administración de empresas",
+                "Licenciatura en Ciencias Sociales",
+                "Psicología Profesional",
+                "Ingeniería Industrial",
+                "Ingeniería de Sistemas",
+                "Administración en Salud",
+                "Administración Pública",
+                "Economía",
+                "Comunicación Social",
+                "Tecnología en Gestión del Talento Humano",
+                "Tecnología en Logística",
+                "Tecnología en Producción de Ganadería Sostenible",
+                "Derecho",
+                "Ingeniería de Software"
+            ],
+            posgrado: [
+                "Esp. en Infancia, Adolescencia y Desarrollo Familiar",
+                "Esp. en Derechos de autor, propiedad ind. y nuevas tec.",
+                "Esp. Auditoria en Salud",
+                "Esp. en Informática para la Innovación Educativa",
+                "Esp. en Revisoría fiscal y auditoría forense",
+                "Esp. en Pedagogía y Docencia",
+                "Esp. Gerencia en Seguridad y Salud en el Trabajo",
+                "Esp. Gestión Ambiental",
+                "Esp. Gerencia Financiera",
+                "Esp. Alta Gerencia",
+                "Esp. Dirección y Producción de contenidos audiovisuales",
+                "Maestría en Educación para la Innovación Pedagógica",
+                "Maestría en Innovación",
+                "Maestría en Gerencia de Mercadeo Digital",
+                "Maestría en Epidemiología"
+            ]
+        };
+
+        const nivelSelect = document.getElementById("nivel");
+        const carreraSelect = document.getElementById("carrera");
+        const tituloPregradoContainer = document.getElementById("tituloPregradoContainer");
+        const tituloPregradoInput = document.getElementById("tituloPregrado");
+
+        const senaPregunta = document.getElementById("senaPregunta");
+        const esSenaSelect = document.getElementById("esSena");
+        const programaSenaLabel = document.getElementById("programaSenaLabel");
+        const programaSenaInput = document.getElementById("programaSena");
+
+        nivelSelect.addEventListener("change", function () {
+            const nivel = this.value;
+            carreraSelect.innerHTML = '<option value="" disabled selected></option>'; // reset carreras
+
+            if (carreras[nivel]) {
+                carreras[nivel].forEach(c => {
+                    const option = document.createElement("option");
+                    option.value = c;
+                    option.textContent = c;
+                    carreraSelect.appendChild(option);
+                });
+            }
+
+            // Mostrar campos dinámicos según nivel
+            if (nivel === "posgrado") {
+                tituloPregradoContainer.style.display = "block";
+                tituloPregradoInput.setAttribute("required", "true");
+
+                senaPregunta.style.display = "none";
+                programaSenaLabel.style.display = "none";
+                programaSenaInput.value = "";
+
+            } else if (nivel === "pregrado") {
+                senaPregunta.style.display = "block";
+
+                tituloPregradoContainer.style.display = "none";
+                tituloPregradoInput.removeAttribute("required");
+                tituloPregradoInput.value = "";
+            } else {
+                senaPregunta.style.display = "none";
+                programaSenaLabel.style.display = "none";
+                tituloPregradoContainer.style.display = "none";
+            }
+        });
+
+        esSenaSelect.addEventListener("change", function () {
+            if (this.value === "si") {
+                programaSenaLabel.style.display = "block";
+                programaSenaInput.setAttribute("required", "true");
+            } else {
+                programaSenaLabel.style.display = "none";
+                programaSenaInput.removeAttribute("required");
+                programaSenaInput.value = "";
+            }
+        });
+
         const form = document.getElementById('registroForm');
         const loader = document.getElementById('loader');
 
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();  // Evita que se recargue la página
-            loader.style.display = "flex"; // Mostrar loader
+      form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    loader.style.display = "flex";
 
-            const data = {
-                nombre: document.getElementById('nombre').value,
-                documento: document.getElementById('documento').value,
-                fechaExpedicion: document.getElementById('fechaExpedicion').value,
-                ciudadExpedicion: document.getElementById('ciudadExpedicion').value,
-                fechaNacimiento: document.getElementById('fechaNacimiento').value,
-                lugarNacimiento: document.getElementById('lugarNacimiento').value,
-                eps: document.getElementById('eps').value,
-                grupoSanguineo: document.getElementById('grupoSanguineo').value,
-                estadoCivil: document.getElementById('estadoCivil').value,
-                ciudadResidencia: document.getElementById('ciudadResidencia').value,
-                departamento: document.getElementById('departamento').value,
-                direccion: document.getElementById('direccion').value,
-                barrio: document.getElementById('barrio').value,
-                telefono: document.getElementById('telefono').value,
-                email: document.getElementById('email').value,
-                colegio: document.getElementById('colegio').value,
-                carrera: document.getElementById('carrera').value,
-                referenciaNombre: document.getElementById('referenciaNombre').value,
-                referenciaParentesco: document.getElementById('referenciaParentesco').value,
-                referenciaTelefono: document.getElementById('referenciaTelefono').value,
-                referenciaEmail: document.getElementById('referenciaEmail').value
-            };
+// En tu formulario, asegúrate de que el objeto data incluya TODOS los campos:
+const data = {
+    fechaInscripcion: new Date().toISOString(), // MOVER AL PRINCIPIO
+    nombre: document.getElementById('nombre').value,
+    documento: document.getElementById('documento').value,
+    fechaExpedicion: document.getElementById('fechaExpedicion').value,
+    ciudadExpedicion: document.getElementById('ciudadExpedicion').value,
+    fechaNacimiento: document.getElementById('fechaNacimiento').value,
+    lugarNacimiento: document.getElementById('lugarNacimiento').value,
+    eps: document.getElementById('eps').value,
+    grupoSanguineo: document.getElementById('grupoSanguineo').value,
+    estadoCivil: document.getElementById('estadoCivil').value,
+    ciudadResidencia: document.getElementById('ciudadResidencia').value,
+    departamento: document.getElementById('departamento').value,
+    direccion: document.getElementById('direccion').value,
+    barrio: document.getElementById('barrio').value,
+    telefono: document.getElementById('telefono').value,
+    email: document.getElementById('email').value,
+    colegio: document.getElementById('colegio').value,
+    nivel: document.getElementById('nivel').value,
+    carrera: document.getElementById('carrera').value,
+    tituloPregrado: document.getElementById('tituloPregrado').value,
+    esSena: document.getElementById('esSena').value,
+    programaSena: document.getElementById('programaSena').value,
+    asesor: document.getElementById('asesor').value, // ✅ AÑADIR ESTE CAMPO
+    referenciaNombre: document.getElementById('referenciaNombre').value,
+    referenciaParentesco: document.getElementById('referenciaParentesco').value,
+    referenciaTelefono: document.getElementById('referenciaTelefono').value,
+    referenciaEmail: document.getElementById('referenciaEmail').value
+};
 
-            // Enviar los datos a Google Sheets
-            fetch('https://script.google.com/macros/s/AKfycby7dY1wGeahbuxg8ShzmjHwLT0HIdMBlaiTmAT5JPyYneJuhNkl6EAQNIG9zmyMr8Qmuw/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" }
-            })
-                .then(() => {
-                    loader.style.display = "none"; // Ocultar loader
-                    alert('✅ Formulario enviado correctamente');
-                    form.reset();
-                })
-                .catch(error => {
-                    loader.style.display = "none"; // Ocultar loader
-                    alert('❌ Hubo un problema al enviar el formulario');
-                    console.error('Error:', error);
-                });
-        });
+    console.log("Datos a enviar:", data); // Verifica que todos los campos estén presentes
+
+    fetch('https://script.google.com/macros/s/AKfycbwEtF-bwrNJmLXqgL88AhQrGv-vIC-RfuuZLZTotYxGdl-RVXBapszSd7q_jUi7b-rtBQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(() => {
+        loader.style.display = "none";
+        alert('✅ Formulario enviado correctamente');
+        form.reset();
+        tituloPregradoContainer.style.display = "none";
+        senaPregunta.style.display = "none";
+        programaSenaLabel.style.display = "none";
+    })
+    .catch(error => {
+        loader.style.display = "none";
+        alert('❌ Hubo un problema al enviar el formulario');
+        console.error('Error:', error);
+    });
+});
     </script>
 
+
+
 </body>
+
 </html>
