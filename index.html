@@ -5,9 +5,18 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Link de inscripción Areandina">
+    <meta name="description"
+        content="Formulario oficial de inscripción Arendina. Regístrate y comienza tu proceso educativo.">
+
+    <!-- 🔹 Open Graph (para vista previa en WhatsApp, Facebook, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Link de inscripción Areandina">
+    <meta property="og:description" content="Formulario oficial de inscripción Arendina.">
+    <meta property="og:image" content="./image.png">
+
     <title>Registro Arendina</title>
     <style>
-        /* Loader estilo spinner */
         .loader {
             display: none;
             position: fixed;
@@ -49,7 +58,6 @@
             }
         }
 
-        /* Logo */
         .logo-container {
             text-align: center;
             margin: 20px 0;
@@ -60,7 +68,6 @@
             height: auto;
         }
 
-        /* Oculto dinámico */
         #tituloPregradoContainer {
             display: none;
         }
@@ -68,20 +75,18 @@
 </head>
 
 <body>
-    <!-- Loader -->
     <div class="loader" id="loader">
         <div class="spinner"></div>
         <p>Enviando...</p>
     </div>
 
-    <!-- Logo centrado -->
     <div class="logo-container">
         <img src="Logo.png" alt="Logo Arendina">
     </div>
 
     <form class="form" id="registroForm">
         <p class="title">Registro Arendina</p>
-        <p class="message">Regístrate ahora y obtén un gran descuento.</p>
+        <p class="message">Inscríbete hoy y comienza a construir el futuro que sueñas.</p>
 
         <div class="flex">
             <label>
@@ -188,7 +193,6 @@
             <span>Colegio donde cursó el bachiller</span>
         </label>
 
-        <!-- Programa -->
         <label>
             <select required class="input" id="nivel">
                 <option value="" disabled selected></option>
@@ -206,13 +210,11 @@
             <span>¿Es estudiante SENA?</span>
         </label>
 
-        <!-- Programa SENA (oculto al inicio) -->
         <label id="programaSenaLabel" style="display:none;">
-            <input class="input" type="text" id="programaSena">
+            <input class="input" type="text" id="programaSena" name="programaSena">
             <span>Programa procedencia SENA</span>
         </label>
 
-        <!-- Carrera -->
         <label>
             <select required class="input" id="carrera">
                 <option value="" disabled selected></option>
@@ -220,23 +222,19 @@
             <span>Carrera por estudiar</span>
         </label>
 
-        <!-- Pregunta SENA (oculto al inicio) -->
 
 
 
-        <!-- Campo dinámico título pregrado -->
         <label id="tituloPregradoContainer">
             <input placeholder="" type="text" class="input" id="tituloPregrado">
             <span>Título Pregrado</span>
         </label>
 
-        <!-- Asesor -->
         <label>
             <select required class="input" id="asesor">
                 <option value="" disabled selected></option>
-                <option value="Sebastian">Sebastián</option>
-                <option value="Rosa">Rosa</option>
-                <option value="Daniel">Daniel</option>
+                <option value="Jorge">Jorge</option>
+                <option value="Andres">Andres</option>
                 <option value="Diana">Diana</option>
                 <option value="Ninguno">Ninguno</option>
             </select>
@@ -287,7 +285,8 @@
                 "Tecnología en Logística",
                 "Tecnología en Producción de Ganadería Sostenible",
                 "Derecho",
-                "Ingeniería de Software"
+                "Ingeniería de Software",
+                "Seguridad y salud en el trabajo",
             ],
             posgrado: [
                 "Esp. en Infancia, Adolescencia y Desarrollo Familiar",
@@ -331,7 +330,6 @@
                 });
             }
 
-            // Mostrar campos dinámicos según nivel
             if (nivel === "posgrado") {
                 tituloPregradoContainer.style.display = "block";
                 tituloPregradoInput.setAttribute("required", "true");
@@ -367,63 +365,62 @@
         const form = document.getElementById('registroForm');
         const loader = document.getElementById('loader');
 
-      form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    loader.style.display = "flex";
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            loader.style.display = "flex";
 
-// En tu formulario, asegúrate de que el objeto data incluya TODOS los campos:
-const data = {
-    fechaInscripcion: new Date().toISOString(), // MOVER AL PRINCIPIO
-    nombre: document.getElementById('nombre').value,
-    documento: document.getElementById('documento').value,
-    fechaExpedicion: document.getElementById('fechaExpedicion').value,
-    ciudadExpedicion: document.getElementById('ciudadExpedicion').value,
-    fechaNacimiento: document.getElementById('fechaNacimiento').value,
-    lugarNacimiento: document.getElementById('lugarNacimiento').value,
-    eps: document.getElementById('eps').value,
-    grupoSanguineo: document.getElementById('grupoSanguineo').value,
-    estadoCivil: document.getElementById('estadoCivil').value,
-    ciudadResidencia: document.getElementById('ciudadResidencia').value,
-    departamento: document.getElementById('departamento').value,
-    direccion: document.getElementById('direccion').value,
-    barrio: document.getElementById('barrio').value,
-    telefono: document.getElementById('telefono').value,
-    email: document.getElementById('email').value,
-    colegio: document.getElementById('colegio').value,
-    nivel: document.getElementById('nivel').value,
-    carrera: document.getElementById('carrera').value,
-    tituloPregrado: document.getElementById('tituloPregrado').value,
-    esSena: document.getElementById('esSena').value,
-    programaSena: document.getElementById('programaSena').value,
-    asesor: document.getElementById('asesor').value, // ✅ AÑADIR ESTE CAMPO
-    referenciaNombre: document.getElementById('referenciaNombre').value,
-    referenciaParentesco: document.getElementById('referenciaParentesco').value,
-    referenciaTelefono: document.getElementById('referenciaTelefono').value,
-    referenciaEmail: document.getElementById('referenciaEmail').value
-};
+            const data = {
+                fechaInscripcion: new Date().toISOString(), // MOVER AL PRINCIPIO
+                nombre: document.getElementById('nombre').value,
+                documento: document.getElementById('documento').value,
+                fechaExpedicion: document.getElementById('fechaExpedicion').value,
+                ciudadExpedicion: document.getElementById('ciudadExpedicion').value,
+                fechaNacimiento: document.getElementById('fechaNacimiento').value,
+                lugarNacimiento: document.getElementById('lugarNacimiento').value,
+                eps: document.getElementById('eps').value,
+                grupoSanguineo: document.getElementById('grupoSanguineo').value,
+                estadoCivil: document.getElementById('estadoCivil').value,
+                ciudadResidencia: document.getElementById('ciudadResidencia').value,
+                departamento: document.getElementById('departamento').value,
+                direccion: document.getElementById('direccion').value,
+                barrio: document.getElementById('barrio').value,
+                telefono: document.getElementById('telefono').value,
+                email: document.getElementById('email').value,
+                colegio: document.getElementById('colegio').value,
+                nivel: document.getElementById('nivel').value,
+                carrera: document.getElementById('carrera').value,
+                tituloPregrado: document.getElementById('tituloPregrado').value,
+                esSena: document.getElementById('esSena').value,
+                programaSena: document.getElementById('programaSena').value,
+                asesor: document.getElementById('asesor').value,
+                referenciaNombre: document.getElementById('referenciaNombre').value,
+                referenciaParentesco: document.getElementById('referenciaParentesco').value,
+                referenciaTelefono: document.getElementById('referenciaTelefono').value,
+                referenciaEmail: document.getElementById('referenciaEmail').value
+            };
 
-    console.log("Datos a enviar:", data); // Verifica que todos los campos estén presentes
+            console.log("Datos a enviar:", data);
 
-    fetch('https://script.google.com/macros/s/AKfycbwEtF-bwrNJmLXqgL88AhQrGv-vIC-RfuuZLZTotYxGdl-RVXBapszSd7q_jUi7b-rtBQ/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(() => {
-        loader.style.display = "none";
-        alert('✅ Formulario enviado correctamente');
-        form.reset();
-        tituloPregradoContainer.style.display = "none";
-        senaPregunta.style.display = "none";
-        programaSenaLabel.style.display = "none";
-    })
-    .catch(error => {
-        loader.style.display = "none";
-        alert('❌ Hubo un problema al enviar el formulario');
-        console.error('Error:', error);
-    });
-});
+            fetch('https://script.google.com/macros/s/AKfycby2c16F95vkal6JTG-CqWIENnCepXHlr-sWTUrOSYUfRyJUfOZWRbY1y0oZ_hWq6JI0zQ/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(data),
+                headers: { "Content-Type": "application/json" }
+            })
+                .then(() => {
+                    loader.style.display = "none";
+                    alert('✅ Formulario enviado correctamente');
+                    form.reset();
+                    tituloPregradoContainer.style.display = "none";
+                    senaPregunta.style.display = "none";
+                    programaSenaLabel.style.display = "none";
+                })
+                .catch(error => {
+                    loader.style.display = "none";
+                    alert('❌ Hubo un problema al enviar el formulario');
+                    console.error('Error:', error);
+                });
+        });
     </script>
 
 
