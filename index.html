@@ -1,73 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Link de inscripción Areandina">
-    <meta name="description"
-        content="Formulario oficial de inscripción Arendina. Regístrate y comienza tu proceso educativo.">
+    <link rel="stylesheet" href="style.css">
 
-    <!-- 🔹 Open Graph (para vista previa en WhatsApp, Facebook, etc.) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Link de inscripción Areandina">
-    <meta property="og:description" content="Formulario oficial de inscripción Arendina.">
-    <meta property="og:image" content="./image.png">
+    <title>Registro Areandina</title>
+    <meta name="title" content="Inscripción Areandina">
+    <meta name="description" content="Formulario oficial de inscripción. Regístrate ahora en Areandina.">
 
-    <title>Registro Arendina</title>
     <style>
-        .loader {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(2px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .spinner {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid rgb(26, 217, 20);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-        }
-
-        .loader p {
-            margin-top: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            color: rgb(26, 217, 20);
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .logo-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .logo-container img {
-            max-width: 320px;
-            height: auto;
-        }
-
         #tituloPregradoContainer {
             display: none;
         }
@@ -75,235 +18,249 @@
 </head>
 
 <body>
+
+    <!-- Loader -->
     <div class="loader" id="loader">
         <div class="spinner"></div>
-        <p>Enviando...</p>
+        <p style="margin-top:20px; font-weight:700; color:#4a7511;">Enviando datos...</p>
     </div>
 
-    <div class="logo-container">
-        <img src="Logo.png" alt="Logo Arendina">
+    <!-- Toasts -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="main-layout">
+        <!-- Panel Izquierdo (Hero) -->
+        <div class="hero-panel">
+            <div class="hero-content">
+                <div class="logo-container">
+                    <img src="Logo.png" alt="Areandina Logo">
+                </div>
+                <h1 class="hero-title">Inscríbete hoy y construye el futuro que sueñas en <span
+                        class="brand-accent">Areandina</span>.</h1>
+                <p class="hero-subtitle">Comienza tu proceso de admisión oficial aquí mismo.</p>
+            </div>
+        </div>
+
+        <!-- Panel Derecho (Formulario) -->
+        <div class="form-panel">
+            <form class="form" id="registroForm">
+                <h2 class="form-title">Registro <span class="brand-accent">Areandina</span></h2>
+
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="nombre" autocomplete="name">
+                        <span>Nombre completo</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="documento">
+                        <span>Tipo y Nº de documento</span>
+                    </label>
+                </div>
+
+                <div class="flex">
+                    <label>
+                        <input required type="date" class="input" id="fechaExpedicion" placeholder=" ">
+                        <span>Fecha de expedición</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="ciudadExpedicion"
+                            list="ciudadesList">
+                        <span>Ciudad de expedición</span>
+                    </label>
+                </div>
+
+                <div class="flex">
+                    <label>
+                        <input required type="date" class="input" id="fechaNacimiento" placeholder=" ">
+                        <span>Fecha de nacimiento</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="lugarNacimiento"
+                            list="ciudadesList">
+                        <span>Lugar de nacimiento</span>
+                    </label>
+                </div>
+
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="eps" list="epsList">
+                        <span>EPS</span>
+                    </label>
+                    <label>
+                        <select required class="input" id="grupoSanguineo">
+                            <option value="" disabled selected></option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                        <span>Grupo Sanguíneo</span>
+                    </label>
+                    <label>
+                        <select required class="input" id="estadoCivil">
+                            <option value="" disabled selected></option>
+                            <option value="soltero">Soltero(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="unionLibre">Unión Libre</option>
+                            <option value="divorciado">Divorciado(a)</option>
+                            <option value="viudo">Viudo(a)</option>
+                        </select>
+                        <span>Estado Civil</span>
+                    </label>
+                </div>
+
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="ciudadResidencia"
+                            list="ciudadesList">
+                        <span>Ciudad de residencia</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="departamento"
+                            list="departamentosList">
+                        <span>Departamento</span>
+                    </label>
+                </div>
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="direccion"
+                            autocomplete="street-address">
+                        <span>Dirección</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="barrio">
+                        <span>Barrio</span>
+                    </label>
+                </div>
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="tel" class="input" id="telefono" autocomplete="tel">
+                        <span>Teléfono celular</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="email" class="input" id="email" autocomplete="email">
+                        <span>Correo electrónico</span>
+                    </label>
+                </div>
+
+                <label>
+                    <input required placeholder=" " type="text" class="input" id="colegio">
+                    <span>Colegio de bachiller / procedencia</span>
+                </label>
+                <div class="flex">
+                    <label>
+                        <select required class="input" id="nivel">
+                            <option value="" disabled selected></option>
+                            <option value="pregrado">Pregrado</option>
+                            <option value="posgrado">Posgrado</option>
+                        </select>
+                        <span>Programa</span>
+                    </label>
+                    <label id="senaPregunta" style="display:none;">
+                        <select class="input" id="esSena">
+                            <option value="" disabled selected></option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                        <span>¿Es estudiante SENA?</span>
+                    </label>
+                </div>
+                <label id="programaSenaLabel" style="display:none;">
+                    <input class="input" type="text" id="programaSena" placeholder=" ">
+                    <span>Programa procedencia SENA</span>
+                </label>
+                <label>
+                    <select required class="input" id="carrera">
+                        <option value="" disabled selected></option>
+                    </select>
+                    <span>Carrera por estudiar</span>
+                </label>
+                <label id="tituloPregradoContainer">
+                    <input placeholder=" " type="text" class="input" id="tituloPregrado">
+                    <span>Título Pregrado</span>
+                </label>
+                <label>
+                    <select required class="input" id="asesor">
+                        <option value="" disabled selected></option>
+                        <option value="Jorge">Jorge</option>
+                        <option value="Andres">Andres</option>
+                        <option value="Diana">Diana</option>
+                        <option value="Geral">Geral</option>
+                        <option value="Ninguno">Ninguno</option>
+                    </select>
+                    <span>Asesor</span>
+                </label>
+
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="referenciaNombre">
+                        <span>Nombre Referencia Familiar</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="text" class="input" id="referenciaParentesco">
+                        <span>Parentesco</span>
+                    </label>
+                </div>
+                <div class="flex">
+                    <label>
+                        <input required placeholder=" " type="tel" class="input" id="referenciaTelefono">
+                        <span>Teléfono Referencia</span>
+                    </label>
+                    <label>
+                        <input required placeholder=" " type="email" class="input" id="referenciaEmail">
+                        <span>Correo Referencia</span>
+                    </label>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="submit">Enviar Registro</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <form class="form" id="registroForm">
-        <p class="title">Registro Arendina</p>
-        <p class="message">Inscríbete hoy y comienza a construir el futuro que sueñas.</p>
+    <!-- Datalists -->
+    <datalist id="epsList">
+        <option value="Sura">Sura</option>
+        <option value="Sanitas">Sanitas</option>
+        <option value="Compensar">Compensar</option>
+        <option value="Salud Total">Salud Total</option>
+        <option value="Nueva EPS">Nueva EPS</option>
+        <option value="Famisanar">Famisanar</option>
+    </datalist>
 
-        <div class="flex">
-            <label>
-                <input required placeholder="" type="text" class="input" id="nombre">
-                <span>Nombre completo</span>
-            </label>
+    <datalist id="ciudadesList">
+        <option value="Bogotá">Bogotá</option>
+        <option value="Medellín">Medellín</option>
+        <option value="Cali">Cali</option>
+        <option value="Barranquilla">Barranquilla</option>
+    </datalist>
 
-            <label>
-                <input required placeholder="" type="text" class="input" id="documento">
-                <span>Tipo y Número de documento</span>
-            </label>
-        </div>
-
-        <div class="flex">
-            <label>
-                <input required type="date" class="input" id="fechaExpedicion">
-                <span>Fecha de expedición</span>
-            </label>
-
-            <label>
-                <input required placeholder="" type="text" class="input" id="ciudadExpedicion">
-                <span>Ciudad de expedición</span>
-            </label>
-        </div>
-
-        <div class="flex">
-            <label>
-                <input required type="date" class="input" id="fechaNacimiento">
-                <span>Fecha de nacimiento</span>
-            </label>
-
-            <label>
-                <input required placeholder="" type="text" class="input" id="lugarNacimiento">
-                <span>Lugar de nacimiento</span>
-            </label>
-        </div>
-
-        <label>
-            <input required placeholder="" type="text" class="input" id="eps">
-            <span>EPS</span>
-        </label>
-
-        <label>
-            <select required class="input" id="grupoSanguineo">
-                <option value="" disabled selected></option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-            </select>
-            <span>Grupo Sanguíneo</span>
-        </label>
-
-        <label>
-            <select required class="input" id="estadoCivil">
-                <option value="" disabled selected></option>
-                <option value="soltero">Soltero(a)</option>
-                <option value="casado">Casado(a)</option>
-                <option value="unionLibre">Unión Libre</option>
-                <option value="divorciado">Divorciado(a)</option>
-                <option value="viudo">Viudo(a)</option>
-            </select>
-            <span>Estado Civil</span>
-        </label>
-
-        <div class="flex">
-            <label>
-                <input required placeholder="" type="text" class="input" id="ciudadResidencia">
-                <span>Ciudad de residencia</span>
-            </label>
-
-            <label>
-                <input required placeholder="" type="text" class="input" id="departamento">
-                <span>Departamento</span>
-            </label>
-        </div>
-
-        <label>
-            <input required placeholder="" type="text" class="input" id="direccion">
-            <span>Dirección</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="text" class="input" id="barrio">
-            <span>Barrio</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="tel" class="input" id="telefono">
-            <span>Teléfono celular</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="email" class="input" id="email">
-            <span>Correo electrónico</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="text" class="input" id="colegio">
-            <span>Colegio donde cursó el bachiller</span>
-        </label>
-
-        <label>
-            <select required class="input" id="nivel">
-                <option value="" disabled selected></option>
-                <option value="pregrado">Pregrado</option>
-                <option value="posgrado">Posgrado</option>
-            </select>
-            <span>Programa</span>
-        </label>
-        <label id="senaPregunta" style="display:none;">
-            <select class="input" id="esSena">
-                <option value="" disabled selected></option>
-                <option value="si">Sí</option>
-                <option value="no">No</option>
-            </select>
-            <span>¿Es estudiante SENA?</span>
-        </label>
-
-        <label id="programaSenaLabel" style="display:none;">
-            <input class="input" type="text" id="programaSena" name="programaSena">
-            <span>Programa procedencia SENA</span>
-        </label>
-
-        <label>
-            <select required class="input" id="carrera">
-                <option value="" disabled selected></option>
-            </select>
-            <span>Carrera por estudiar</span>
-        </label>
-
-
-
-
-        <label id="tituloPregradoContainer">
-            <input placeholder="" type="text" class="input" id="tituloPregrado">
-            <span>Título Pregrado</span>
-        </label>
-
-        <label>
-            <select required class="input" id="asesor">
-                <option value="" disabled selected></option>
-                <option value="Jorge">Jorge</option>
-                <option value="Andres">Andres</option>
-                <option value="Diana">Diana</option>
-                <option value="Geral">Geral</option>
-                <option value="Ninguno">Ninguno</option>
-            </select>
-            <span>Asesor</span>
-        </label>
-
-        <p class="title">Referencia Familiar (Contacto de emergencia)</p>
-
-        <label>
-            <input required placeholder="" type="text" class="input" id="referenciaNombre">
-            <span>Nombre</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="text" class="input" id="referenciaParentesco">
-            <span>Parentesco</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="tel" class="input" id="referenciaTelefono">
-            <span>Teléfono</span>
-        </label>
-
-        <label>
-            <input required placeholder="" type="email" class="input" id="referenciaEmail">
-            <span>Correo electrónico</span>
-        </label>
-
-        <button type="submit" class="submit">Enviar</button>
-    </form>
+    <datalist id="departamentosList">
+        <option value="Antioquia">Antioquia</option>
+        <option value="Bogotá D.C.">Bogotá D.C.</option>
+        <option value="Valle del Cauca">Valle del Cauca</option>
+    </datalist>
 
     <script>
         const carreras = {
             pregrado: [
-                "Licenciatura en Educación Infantil",
-                "Marketing de Negocios",
-                "Finanzas y Negocios Internacionales",
-                "Administración de empresas",
-                "Licenciatura en Ciencias Sociales",
-                "Psicología Profesional",
-                "Ingeniería Industrial",
-                "Ingeniería de Sistemas",
-                "Administración en Salud",
-                "Administración Pública",
-                "Economía",
-                "Comunicación Social",
-                "Tecnología en Gestión del Talento Humano",
-                "Tecnología en Logística",
-                "Tecnología en Producción de Ganadería Sostenible",
-                "Derecho",
-                "Ingeniería de Software",
-                "Seguridad y salud en el trabajo",
+                "Licenciatura en Educación Infantil", "Marketing de Negocios", "Finanzas y Negocios Internacionales",
+                "Administración de empresas", "Licenciatura en Ciencias Sociales", "Psicología Profesional",
+                "Ingeniería Industrial", "Ingeniería de Sistemas", "Administración en Salud", "Administración Pública",
+                "Economía", "Comunicación Social", "Tecnología en Gestión del Talento Humano", "Tecnología en Logística",
+                "Tecnología en Producción de Ganadería Sostenible", "Derecho", "Ingeniería de Software", "Seguridad y salud en el trabajo"
             ],
             posgrado: [
-                "Esp. en Infancia, Adolescencia y Desarrollo Familiar",
-                "Esp. en Derechos de autor, propiedad ind. y nuevas tec.",
-                "Esp. Auditoria en Salud",
-                "Esp. en Informática para la Innovación Educativa",
-                "Esp. en Revisoría fiscal y auditoría forense",
-                "Esp. en Pedagogía y Docencia",
-                "Esp. Gerencia en Seguridad y Salud en el Trabajo",
-                "Esp. Gestión Ambiental",
-                "Esp. Gerencia Financiera",
-                "Esp. Alta Gerencia",
-                "Esp. Dirección y Producción de contenidos audiovisuales",
-                "Maestría en Educación para la Innovación Pedagógica",
-                "Maestría en Innovación",
-                "Maestría en Gerencia de Mercadeo Digital",
+                "Esp. en Infancia, Adolescencia y Desarrollo Familiar", "Esp. en Derechos de autor, propiedad ind. y nuevas tec.",
+                "Esp. Auditoria en Salud", "Esp. en Informática para la Innovación Educativa", "Esp. en Revisoría fiscal y auditoría forense",
+                "Esp. en Pedagogía y Docencia", "Esp. Gerencia en Seguridad y Salud en el Trabajo", "Esp. Gestión Ambiental",
+                "Esp. Gerencia Financiera", "Esp. Alta Gerencia", "Esp. Dirección y Producción de contenidos audiovisuales",
+                "Maestría en Educación para la Innovación Pedagógica", "Maestría en Innovación", "Maestría en Gerencia de Mercadeo Digital",
                 "Maestría en Epidemiología"
             ]
         };
@@ -312,7 +269,6 @@
         const carreraSelect = document.getElementById("carrera");
         const tituloPregradoContainer = document.getElementById("tituloPregradoContainer");
         const tituloPregradoInput = document.getElementById("tituloPregrado");
-
         const senaPregunta = document.getElementById("senaPregunta");
         const esSenaSelect = document.getElementById("esSena");
         const programaSenaLabel = document.getElementById("programaSenaLabel");
@@ -320,8 +276,7 @@
 
         nivelSelect.addEventListener("change", function () {
             const nivel = this.value;
-            carreraSelect.innerHTML = '<option value="" disabled selected></option>'; // reset carreras
-
+            carreraSelect.innerHTML = '<option value="" disabled selected></option>';
             if (carreras[nivel]) {
                 carreras[nivel].forEach(c => {
                     const option = document.createElement("option");
@@ -334,21 +289,12 @@
             if (nivel === "posgrado") {
                 tituloPregradoContainer.style.display = "block";
                 tituloPregradoInput.setAttribute("required", "true");
-
                 senaPregunta.style.display = "none";
                 programaSenaLabel.style.display = "none";
-                programaSenaInput.value = "";
-
             } else if (nivel === "pregrado") {
                 senaPregunta.style.display = "block";
-
                 tituloPregradoContainer.style.display = "none";
                 tituloPregradoInput.removeAttribute("required");
-                tituloPregradoInput.value = "";
-            } else {
-                senaPregunta.style.display = "none";
-                programaSenaLabel.style.display = "none";
-                tituloPregradoContainer.style.display = "none";
             }
         });
 
@@ -359,9 +305,29 @@
             } else {
                 programaSenaLabel.style.display = "none";
                 programaSenaInput.removeAttribute("required");
-                programaSenaInput.value = "";
             }
         });
+
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast show';
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        function formatDateToDDMMYYYY(dateString) {
+            if (!dateString) return "";
+            const parts = dateString.split("-");
+            if (parts.length === 3) {
+                return `${parts[2]}/${parts[1]}/${parts[0]}`; // DD/MM/YYYY
+            }
+            return dateString;
+        }
 
         const form = document.getElementById('registroForm');
         const loader = document.getElementById('loader');
@@ -371,12 +337,12 @@
             loader.style.display = "flex";
 
             const data = {
-                fechaInscripcion: new Date().toISOString(), // MOVER AL PRINCIPIO
+                fechaInscripcion: new Date().toLocaleString(),
                 nombre: document.getElementById('nombre').value,
                 documento: document.getElementById('documento').value,
-                fechaExpedicion: document.getElementById('fechaExpedicion').value,
+                fechaExpedicion: formatDateToDDMMYYYY(document.getElementById('fechaExpedicion').value),
                 ciudadExpedicion: document.getElementById('ciudadExpedicion').value,
-                fechaNacimiento: document.getElementById('fechaNacimiento').value,
+                fechaNacimiento: formatDateToDDMMYYYY(document.getElementById('fechaNacimiento').value),
                 lugarNacimiento: document.getElementById('lugarNacimiento').value,
                 eps: document.getElementById('eps').value,
                 grupoSanguineo: document.getElementById('grupoSanguineo').value,
@@ -390,17 +356,15 @@
                 colegio: document.getElementById('colegio').value,
                 nivel: document.getElementById('nivel').value,
                 carrera: document.getElementById('carrera').value,
-                tituloPregrado: document.getElementById('tituloPregrado').value,
-                esSena: document.getElementById('esSena').value,
-                programaSena: document.getElementById('programaSena').value,
+                tituloPregrado: document.getElementById('tituloPregrado') ? document.getElementById('tituloPregrado').value : "",
+                esSena: document.getElementById('esSena') ? document.getElementById('esSena').value : "",
+                programaSena: document.getElementById('programaSena') ? document.getElementById('programaSena').value : "",
                 asesor: document.getElementById('asesor').value,
                 referenciaNombre: document.getElementById('referenciaNombre').value,
                 referenciaParentesco: document.getElementById('referenciaParentesco').value,
                 referenciaTelefono: document.getElementById('referenciaTelefono').value,
                 referenciaEmail: document.getElementById('referenciaEmail').value
             };
-
-            console.log("Datos a enviar:", data);
 
             fetch('https://script.google.com/macros/s/AKfycby2c16F95vkal6JTG-CqWIENnCepXHlr-sWTUrOSYUfRyJUfOZWRbY1y0oZ_hWq6JI0zQ/exec', {
                 method: 'POST',
@@ -410,23 +374,18 @@
             })
                 .then(() => {
                     loader.style.display = "none";
-                    alert('✅ Formulario enviado correctamente');
+                    showToast('✅ Registro enviado correctamente');
                     form.reset();
-                    tituloPregradoContainer.style.display = "none";
-                    senaPregunta.style.display = "none";
-                    programaSenaLabel.style.display = "none";
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 })
                 .catch(error => {
                     loader.style.display = "none";
-                    alert('❌ Hubo un problema al enviar el formulario');
-                    console.error('Error:', error);
+                    showToast('❌ Error al enviar el formulario');
+                    console.error(error);
                 });
         });
     </script>
 
-
-
 </body>
 
 </html>
-
