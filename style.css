@@ -159,12 +159,13 @@ label span {
 }
 
 .input:focus+span,
-.input:not(:placeholder-shown)+span {
+input.input:not(:placeholder-shown)+span,
+select.input:valid+span {
     top: -10px;
     left: 12px;
     font-size: 12px;
     font-weight: 700;
-    color: #F10180;
+    color: #7DBA24;
     background: #fff;
     padding: 0 6px;
 }
