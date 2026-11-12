@@ -4,359 +4,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
-
+    <meta name="theme-color" content="#faf6ee">
     <title>Registro Areandina</title>
     <meta name="title" content="Inscripción Areandina">
     <meta name="description" content="Formulario oficial de inscripción. Regístrate ahora en Areandina.">
-
-    <style>
-        #tituloPregradoContainer {
-            display: none;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Loader -->
-    <div class="loader" id="loader">
+    <div class="loader" id="loader" role="status" aria-live="polite">
         <div class="spinner"></div>
-        <p style="margin-top:20px; font-weight:700; color:#4a7511;">Enviando datos...</p>
+        <p>Enviando tu inscripción…</p>
+    </div>
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Fondo de color -->
+    <div class="bg" aria-hidden="true">
+        <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
     </div>
 
-    <!-- Toasts -->
-    <div id="toastContainer" class="toast-container"></div>
+    <!-- ===== ENCABEZADO ===== -->
+    <header class="nav">
+        <div class="logo-pill"><img src="Logo.png" alt="Areandina"></div>
+        <span class="nav-tag"><span class="live"></span> Inscripciones abiertas 2026</span>
+    </header>
 
-    <div class="main-layout">
-        <!-- Panel Izquierdo (Hero) -->
-        <div class="hero-panel">
-            <div class="hero-decoration"></div>
-            <div class="hero-decoration hero-decoration-2"></div>
-            <div class="hero-content">
-                <div class="logo-container">
-                    <img src="Logo.png" alt="Areandina Logo">
-                </div>
-                <h1 class="hero-title">Tu futuro comienza <span class="hero-highlight">aquí</span></h1>
-                <p class="hero-subtitle">Inscríbete y da el primer paso hacia la carrera de tus sueños en Areandina.</p>
+    <!-- ===== PORTADA ===== -->
+    <section class="hero">
+        <div class="hero-copy">
+            <p class="kicker"><span class="material-symbols-rounded">auto_awesome</span> CSU Galán · Areandina</p>
+            <h1>Tu carrera empieza con <span class="si">un sí<svg viewBox="0 0 220 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16 C 60 4, 150 4, 216 14" /></svg></span>.</h1>
+            <p class="hero-lead">Llena tu inscripción en 5 pasos cortos. Un asesor te acompaña desde hoy hasta tu matrícula.</p>
+            <a href="#inscripcion" class="cta">Empezar inscripción <span class="material-symbols-rounded">arrow_downward</span></a>
 
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <span class="material-symbols-rounded">school</span>
-                        <span>Educación de calidad</span>
-                    </div>
-                    <div class="hero-feature">
-                        <span class="material-symbols-rounded">laptop_mac</span>
-                        <span>Modalidad flexible</span>
-                    </div>
-                    <div class="hero-feature">
-                        <span class="material-symbols-rounded">support_agent</span>
-                        <span>Acompañamiento</span>
-                    </div>
-                </div>
+            <ul class="stats">
+                <li><b>40</b><span>programas de pregrado y posgrado</span></li>
+                <li><b>5 min</b><span>para inscribirte</span></li>
+                <li><b>1 a 1</b><span>acompañamiento con tu asesor</span></li>
+            </ul>
+        </div>
 
-                <div class="hero-badge">
-                    <span class="material-symbols-rounded">verified</span>
-                    Admisiones 2026
-                </div>
+        <!-- Ilustración propia -->
+        <div class="hero-art" aria-hidden="true">
+            <svg viewBox="0 0 460 440" class="hero-svg">
+                <defs>
+                    <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#c7f36f" />
+                        <stop offset="1" stop-color="#7DBA24" />
+                    </linearGradient>
+                    <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#1d5a26" />
+                        <stop offset="1" stop-color="#0f2e14" />
+                    </linearGradient>
+                </defs>
+                <circle cx="240" cy="220" r="190" fill="url(#gA)" />
+                <circle cx="240" cy="220" r="150" fill="none" stroke="#0f2e14" stroke-opacity=".12" stroke-width="2" stroke-dasharray="4 10" />
+                <!-- tarjeta estudiante -->
+                <g transform="rotate(-6 240 230)">
+                    <rect x="120" y="120" width="240" height="250" rx="28" fill="#fff" />
+                    <rect x="120" y="120" width="240" height="78" rx="28" fill="url(#gB)" />
+                    <rect x="120" y="170" width="240" height="28" fill="url(#gB)" />
+                    <circle cx="240" cy="205" r="44" fill="#ffd9ec" stroke="#fff" stroke-width="6" />
+                    <circle cx="240" cy="196" r="15" fill="#F10180" />
+                    <path d="M214 232 a26 22 0 0 1 52 0" fill="#F10180" />
+                    <polygon points="240,148 282,164 240,180 198,164" fill="#c7f36f" />
+                    <rect x="236" y="164" width="8" height="16" fill="#c7f36f" />
+                    <path d="M276 166 v20" stroke="#c7f36f" stroke-width="3" stroke-linecap="round" />
+                    <rect x="160" y="270" width="160" height="12" rx="6" fill="#0f2e14" opacity=".85" />
+                    <rect x="180" y="294" width="120" height="10" rx="5" fill="#0f2e14" opacity=".18" />
+                    <rect x="160" y="324" width="74" height="26" rx="13" fill="#eef8de" />
+                    <rect x="244" y="324" width="76" height="26" rx="13" fill="#ffe3f1" />
+                </g>
+                <!-- burbujas flotantes -->
+                <g class="float f1">
+                    <rect x="300" y="70" width="150" height="54" rx="27" fill="#fff" />
+                    <circle cx="327" cy="97" r="15" fill="#7DBA24" />
+                    <path d="M320 97 l5 5 l9 -10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                    <rect x="350" y="88" width="80" height="8" rx="4" fill="#0f2e14" opacity=".8" />
+                    <rect x="350" y="102" width="54" height="6" rx="3" fill="#0f2e14" opacity=".25" />
+                </g>
+                <g class="float f2">
+                    <rect x="8" y="300" width="140" height="54" rx="27" fill="#0f2e14" />
+                    <circle cx="35" cy="327" r="15" fill="#F10180" />
+                    <path d="M29 327 h12 M35 321 v12" stroke="#fff" stroke-width="3.5" stroke-linecap="round" />
+                    <rect x="58" y="318" width="72" height="8" rx="4" fill="#fff" opacity=".9" />
+                    <rect x="58" y="332" width="46" height="6" rx="3" fill="#fff" opacity=".4" />
+                </g>
+                <g class="float f3">
+                    <circle cx="70" cy="110" r="34" fill="#fff" />
+                    <path d="M54 118 l16 -26 l16 26 z" fill="#F10180" />
+                    <circle cx="70" cy="102" r="5" fill="#fff" />
+                </g>
+                <circle cx="420" cy="330" r="10" fill="#F10180" />
+                <circle cx="402" cy="364" r="6" fill="#0f2e14" />
+                <circle cx="110" cy="40" r="7" fill="#0f2e14" opacity=".7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ===== FORMULARIO POR PASOS ===== -->
+    <main class="zona" id="inscripcion">
+        <form class="wizard" id="registroForm" novalidate>
+
+            <div class="wz-top">
+                <ol class="pills" id="pills" aria-label="Pasos"></ol>
+                <div class="bar"><div class="bar-fill" id="progressBar"></div></div>
             </div>
-        </div>
 
-        <!-- Panel Derecho (Formulario) -->
-        <div class="form-panel">
-            <form class="form" id="registroForm">
-                <h2 class="form-title">Registro <span style="color: #7DBA24;">Areandina</span></h2>
-
-                <div class="form-section">
-                    <h3 class="section-title"><span class="material-symbols-rounded">person</span> Información Personal
-                    </h3>
-
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="nombre" autocomplete="name">
-                            <span>Nombre completo</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="documento">
-                            <span>Tipo y Nº de documento</span>
-                        </label>
+            <!-- PASO 1 -->
+            <section class="paso" data-titulo="Tú" data-icono="badge">
+                <div class="arte">
+                    <svg viewBox="0 0 200 150" aria-hidden="true">
+                        <circle cx="100" cy="78" r="64" fill="#e5f6c8" />
+                        <rect x="38" y="40" width="124" height="82" rx="14" fill="#fff" stroke="#0f2e14" stroke-width="3" />
+                        <rect x="38" y="40" width="124" height="22" rx="11" fill="#F10180" />
+                        <rect x="38" y="52" width="124" height="10" fill="#F10180" />
+                        <circle cx="72" cy="90" r="16" fill="#c7f36f" stroke="#0f2e14" stroke-width="3" />
+                        <rect x="98" y="80" width="50" height="7" rx="3.5" fill="#0f2e14" />
+                        <rect x="98" y="94" width="36" height="6" rx="3" fill="#0f2e14" opacity=".3" />
+                        <circle cx="168" cy="30" r="6" fill="#7DBA24" />
+                        <circle cx="30" cy="124" r="4" fill="#F10180" />
+                    </svg>
+                    <p class="arte-num">Paso 1 de 5</p>
+                    <h3>Cuéntanos quién eres</h3>
+                    <p>Escribe tus datos <b>tal como aparecen en tu documento</b>.</p>
+                </div>
+                <div class="campos">
+                    <label class="field span-2">
+                        <span class="lbl">Nombre completo</span>
+                        <input required type="text" class="input" id="nombre" autocomplete="name" placeholder="Ej: Yeni Paola Duarte Rugeles">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Tipo y número de documento</span>
+                        <input required type="text" class="input" id="documento" placeholder="Ej: CC 1101320248" autocomplete="off">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Fecha de expedición</span>
+                        <input required type="date" class="input" id="fechaExpedicion">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Ciudad de expedición</span>
+                        <input required type="text" class="input" id="ciudadExpedicion" placeholder="Ej: Simacota">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Fecha de nacimiento</span>
+                        <input required type="date" class="input" id="fechaNacimiento">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Lugar de nacimiento</span>
+                        <input required type="text" class="input" id="lugarNacimiento" placeholder="Ciudad / Departamento">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">EPS</span>
+                        <input required type="text" class="input" id="eps" list="epsList" placeholder="Escribe o elige" autocomplete="off">
+                    </label>
+                    <div class="choice span-2">
+                        <span class="lbl" id="lbl-rh">Grupo sanguíneo (RH)</span>
+                        <select required class="sr-select" id="grupoSanguineo" aria-labelledby="lbl-rh" data-chips>
+                            <option value="" disabled selected></option>
+                            <option value="A+">A+</option><option value="A-">A-</option>
+                            <option value="B+">B+</option><option value="B-">B-</option>
+                            <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                            <option value="O+">O+</option><option value="O-">O-</option>
+                        </select>
                     </div>
-
-                    <div class="flex">
-                        <label>
-                            <input required type="date" class="input" id="fechaExpedicion" placeholder=" ">
-                            <span>Fecha de expedición</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="ciudadExpedicion">
-                            <span>Ciudad de expedición</span>
-                        </label>
-                    </div>
-
-                    <div class="flex">
-                        <label>
-                            <input required type="date" class="input" id="fechaNacimiento" placeholder=" ">
-                            <span>Fecha de nacimiento</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="lugarNacimiento">
-                            <span>Lugar de nacimiento</span>
-                        </label>
-                    </div>
-
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="eps" list="epsList">
-                            <span>EPS</span>
-                        </label>
-                        <label>
-                            <select required class="input" id="grupoSanguineo">
-                                <option value="" disabled selected></option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                            </select>
-                            <span>Grupo Sanguíneo</span>
-                        </label>
-                        <label>
-                            <select required class="input" id="estadoCivil">
-                                <option value="" disabled selected></option>
-                                <option value="soltero">Soltero(a)</option>
-                                <option value="casado">Casado(a)</option>
-                                <option value="unionLibre">Unión Libre</option>
-                                <option value="divorciado">Divorciado(a)</option>
-                                <option value="viudo">Viudo(a)</option>
-                            </select>
-                            <span>Estado Civil</span>
-                        </label>
+                    <div class="choice span-2">
+                        <span class="lbl" id="lbl-ec">Estado civil</span>
+                        <select required class="sr-select" id="estadoCivil" aria-labelledby="lbl-ec" data-chips>
+                            <option value="" disabled selected></option>
+                            <option value="soltero">Soltero(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="unionLibre">Unión libre</option>
+                            <option value="divorciado">Divorciado(a)</option>
+                            <option value="viudo">Viudo(a)</option>
+                        </select>
                     </div>
                 </div>
+            </section>
 
-                <div class="form-section">
-                    <h3 class="section-title"><span class="material-symbols-rounded">location_on</span> Información de
-                        Contacto</h3>
+            <!-- PASO 2 -->
+            <section class="paso" data-titulo="Contacto" data-icono="home_pin" hidden>
+                <div class="arte">
+                    <svg viewBox="0 0 200 150" aria-hidden="true">
+                        <circle cx="100" cy="78" r="64" fill="#ffe3f1" />
+                        <path d="M20 128 C 60 98, 140 98, 180 128 Z" fill="#c7f36f" />
+                        <rect x="56" y="80" width="52" height="40" rx="4" fill="#fff" stroke="#0f2e14" stroke-width="3" />
+                        <path d="M50 84 L82 58 L114 84" fill="none" stroke="#0f2e14" stroke-width="3" stroke-linejoin="round" />
+                        <rect x="74" y="98" width="16" height="22" rx="2" fill="#7DBA24" />
+                        <path d="M140 30 a18 18 0 0 1 18 18 c0 14 -18 32 -18 32 s-18 -18 -18 -32 a18 18 0 0 1 18 -18 z" fill="#F10180" stroke="#0f2e14" stroke-width="3" />
+                        <circle cx="140" cy="48" r="6" fill="#fff" />
+                    </svg>
+                    <p class="arte-num">Paso 2 de 5</p>
+                    <h3>¿Dónde te encontramos?</h3>
+                    <p>Tu asesor usará estos datos para escribirte y llamarte.</p>
+                </div>
+                <div class="campos">
+                    <label class="field">
+                        <span class="lbl">Departamento</span>
+                        <select required class="input" id="departamento">
+                            <option value="" disabled selected>Elige tu departamento</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Antioquia">Antioquia</option>
+                            <option value="Arauca">Arauca</option>
+                            <option value="Atlántico">Atlántico</option>
+                            <option value="Bogotá D.C.">Bogotá D.C.</option>
+                            <option value="Bolívar">Bolívar</option>
+                            <option value="Boyacá">Boyacá</option>
+                            <option value="Caldas">Caldas</option>
+                            <option value="Caquetá">Caquetá</option>
+                            <option value="Casanare">Casanare</option>
+                            <option value="Cauca">Cauca</option>
+                            <option value="Cesar">Cesar</option>
+                            <option value="Chocó">Chocó</option>
+                            <option value="Córdoba">Córdoba</option>
+                            <option value="Cundinamarca">Cundinamarca</option>
+                            <option value="Guainía">Guainía</option>
+                            <option value="Guaviare">Guaviare</option>
+                            <option value="Huila">Huila</option>
+                            <option value="La Guajira">La Guajira</option>
+                            <option value="Magdalena">Magdalena</option>
+                            <option value="Meta">Meta</option>
+                            <option value="Nariño">Nariño</option>
+                            <option value="Norte de Santander">Norte de Santander</option>
+                            <option value="Putumayo">Putumayo</option>
+                            <option value="Quindío">Quindío</option>
+                            <option value="Risaralda">Risaralda</option>
+                            <option value="San Andrés y Providencia">San Andrés y Providencia</option>
+                            <option value="Santander">Santander</option>
+                            <option value="Sucre">Sucre</option>
+                            <option value="Tolima">Tolima</option>
+                            <option value="Valle del Cauca">Valle del Cauca</option>
+                            <option value="Vaupés">Vaupés</option>
+                            <option value="Vichada">Vichada</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Ciudad de residencia</span>
+                        <input required type="text" class="input" id="ciudadResidencia" placeholder="Ej: Bucaramanga">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Dirección</span>
+                        <input required type="text" class="input" id="direccion" autocomplete="street-address" placeholder="Ej: Calle 10 # 5-20">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Barrio</span>
+                        <input required type="text" class="input" id="barrio" placeholder="Barrio o vereda">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Celular</span>
+                        <span class="pre"><em>+57</em><input required type="tel" class="input" id="telefono" autocomplete="tel-national" inputmode="numeric" placeholder="300 123 4567"></span>
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Correo electrónico</span>
+                        <input required type="email" class="input" id="email" autocomplete="email" placeholder="nombre@gmail.com">
+                    </label>
+                </div>
+            </section>
 
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="ciudadResidencia">
-                            <span>Ciudad de residencia</span>
-                        </label>
-                        <label>
-                            <select required class="input" id="departamento">
-                                <option value="" disabled selected></option>
-                                <option value="Amazonas">Amazonas</option>
-                                <option value="Antioquia">Antioquia</option>
-                                <option value="Arauca">Arauca</option>
-                                <option value="Atlántico">Atlántico</option>
-                                <option value="Bogotá D.C.">Bogotá D.C.</option>
-                                <option value="Bolívar">Bolívar</option>
-                                <option value="Boyacá">Boyacá</option>
-                                <option value="Caldas">Caldas</option>
-                                <option value="Caquetá">Caquetá</option>
-                                <option value="Casanare">Casanare</option>
-                                <option value="Cauca">Cauca</option>
-                                <option value="Cesar">Cesar</option>
-                                <option value="Chocó">Chocó</option>
-                                <option value="Córdoba">Córdoba</option>
-                                <option value="Cundinamarca">Cundinamarca</option>
-                                <option value="Guainía">Guainía</option>
-                                <option value="Guaviare">Guaviare</option>
-                                <option value="Huila">Huila</option>
-                                <option value="La Guajira">La Guajira</option>
-                                <option value="Magdalena">Magdalena</option>
-                                <option value="Meta">Meta</option>
-                                <option value="Nariño">Nariño</option>
-                                <option value="Norte de Santander">Norte de Santander</option>
-                                <option value="Putumayo">Putumayo</option>
-                                <option value="Quindío">Quindío</option>
-                                <option value="Risaralda">Risaralda</option>
-                                <option value="San Andrés y Providencia">San Andrés y Providencia</option>
-                                <option value="Santander">Santander</option>
-                                <option value="Sucre">Sucre</option>
-                                <option value="Tolima">Tolima</option>
-                                <option value="Valle del Cauca">Valle del Cauca</option>
-                                <option value="Vaupés">Vaupés</option>
-                                <option value="Vichada">Vichada</option>
-                            </select>
-                            <span>Departamento</span>
-                        </label>
+            <!-- PASO 3 -->
+            <section class="paso" data-titulo="Programa" data-icono="school" hidden>
+                <div class="arte">
+                    <svg viewBox="0 0 200 150" aria-hidden="true">
+                        <circle cx="100" cy="78" r="64" fill="#e5f6c8" />
+                        <rect x="52" y="104" width="96" height="16" rx="4" fill="#F10180" stroke="#0f2e14" stroke-width="3" />
+                        <rect x="60" y="88" width="84" height="16" rx="4" fill="#fff" stroke="#0f2e14" stroke-width="3" />
+                        <rect x="56" y="72" width="90" height="16" rx="4" fill="#7DBA24" stroke="#0f2e14" stroke-width="3" />
+                        <polygon points="100,22 150,42 100,62 50,42" fill="#0f2e14" />
+                        <path d="M72 50 v14 c0 8 56 8 56 0 v-14" fill="#1d5a26" />
+                        <path d="M146 44 v22" stroke="#F10180" stroke-width="4" stroke-linecap="round" />
+                        <circle cx="146" cy="70" r="5" fill="#F10180" />
+                        <circle cx="34" cy="40" r="5" fill="#F10180" />
+                    </svg>
+                    <p class="arte-num">Paso 3 de 5</p>
+                    <h3>¿Qué quieres estudiar?</h3>
+                    <p>Elige el nivel y el programa. Puedes cambiarlo luego con tu asesor.</p>
+                </div>
+                <div class="campos">
+                    <div class="choice span-2">
+                        <span class="lbl" id="lbl-nivel">Nivel</span>
+                        <select required class="sr-select" id="nivel" aria-labelledby="lbl-nivel" data-chips="big">
+                            <option value="" disabled selected></option>
+                            <option value="pregrado" data-icon="menu_book" data-sub="Profesional o tecnología">Pregrado</option>
+                            <option value="posgrado" data-icon="workspace_premium" data-sub="Especialización o maestría">Posgrado</option>
+                        </select>
                     </div>
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="direccion"
-                                autocomplete="street-address">
-                            <span>Dirección</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="barrio">
-                            <span>Barrio</span>
-                        </label>
+                    <label class="field span-2">
+                        <span class="lbl">Programa</span>
+                        <select required class="input" id="carrera" disabled>
+                            <option value="" disabled selected>Primero elige el nivel</option>
+                        </select>
+                    </label>
+                    <div class="choice span-2" id="senaRow" hidden>
+                        <span class="lbl" id="lbl-sena">¿Eres egresado del SENA?</span>
+                        <select class="sr-select" id="esSena" aria-labelledby="lbl-sena" data-chips>
+                            <option value="" disabled selected></option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
                     </div>
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="tel" class="input" id="telefono" autocomplete="tel">
-                            <span>Teléfono celular</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="email" class="input" id="email" autocomplete="email">
-                            <span>Correo electrónico</span>
-                        </label>
+                    <label class="field span-2" id="programaSenaLabel" hidden>
+                        <span class="lbl">Programa que estudiaste en el SENA</span>
+                        <input class="input" type="text" id="programaSena" placeholder="Ej: Tecnólogo en Gestión Contable">
+                    </label>
+                    <label class="field span-2" id="tituloPregradoContainer" hidden>
+                        <span class="lbl">Título de pregrado</span>
+                        <input type="text" class="input" id="tituloPregrado" placeholder="Ej: Administrador de Empresas">
+                    </label>
+                    <label class="field span-2">
+                        <span class="lbl">Colegio donde te graduaste</span>
+                        <input required type="text" class="input" id="colegio" placeholder="Nombre del colegio">
+                    </label>
+                    <div class="choice span-2">
+                        <span class="lbl" id="lbl-asesor">¿Qué asesor te atendió?</span>
+                        <select required class="sr-select" id="asesor" aria-labelledby="lbl-asesor" data-chips>
+                            <option value="" disabled selected></option>
+                            <option value="Jorge">Jorge</option>
+                            <option value="Steven">Steven</option>
+                            <option value="Andres">Andres</option>
+                            <option value="Juan">Juan</option>
+                            <option value="Geral">Geral</option>
+                            <option value="Ninguno">Ninguno</option>
+                        </select>
                     </div>
                 </div>
+            </section>
 
-                <div class="form-section">
-                    <h3 class="section-title"><span class="material-symbols-rounded">school</span> Información Académica
-                    </h3>
-
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="colegio">
-                            <span>Colegio de bachiller / procedencia</span>
-                        </label>
-                        <label>
-                            <select required class="input" id="nivel">
-                                <option value="" disabled selected></option>
-                                <option value="pregrado">Pregrado</option>
-                                <option value="posgrado">Posgrado</option>
-                            </select>
-                            <span>Programa</span>
-                        </label>
-                    </div>
-                    <div class="flex" id="senaRow" style="display:none;">
-                        <label id="senaPregunta">
-                            <select class="input" id="esSena">
-                                <option value="" disabled selected></option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
-                            </select>
-                            <span>¿Es egresado SENA?</span>
-                        </label>
-                        <label id="programaSenaLabel" style="display:none;">
-                            <input class="input" type="text" id="programaSena" placeholder=" ">
-                            <span>Programa procedencia SENA</span>
-                        </label>
-                    </div>
-                    <div class="flex">
-                        <label>
-                            <select required class="input" id="carrera">
-                                <option value="" disabled selected></option>
-                            </select>
-                            <span>Carrera por estudiar</span>
-                        </label>
-                        <label>
-                            <select required class="input" id="asesor">
-                                <option value="" disabled selected></option>
-                                <option value="Jorge">Jorge</option>
-                                <option value="Steven">Steven</option>
-                                <option value="Andres">Andres</option>
-                                <option value="Juan">Juan</option>
-                                <option value="Geral">Geral</option>
-                                <option value="Ninguno">Ninguno</option>
-                            </select>
-                            <span>Asesor</span>
-                        </label>
-                        <label id="tituloPregradoContainer">
-                            <input placeholder=" " type="text" class="input" id="tituloPregrado">
-                            <span>Título Pregrado</span>
-                        </label>
-                    </div>
+            <!-- PASO 4 -->
+            <section class="paso" data-titulo="Familia" data-icono="family_restroom" hidden>
+                <div class="arte">
+                    <svg viewBox="0 0 200 150" aria-hidden="true">
+                        <circle cx="100" cy="78" r="64" fill="#ffe3f1" />
+                        <circle cx="78" cy="62" r="16" fill="#fff" stroke="#0f2e14" stroke-width="3" />
+                        <path d="M50 120 a28 28 0 0 1 56 0 z" fill="#7DBA24" stroke="#0f2e14" stroke-width="3" />
+                        <circle cx="126" cy="70" r="13" fill="#fff" stroke="#0f2e14" stroke-width="3" />
+                        <path d="M104 120 a22 22 0 0 1 44 0 z" fill="#F10180" stroke="#0f2e14" stroke-width="3" />
+                        <path d="M100 30 c-5 -8 -16 -4 -14 4 c2 7 14 12 14 12 s12 -5 14 -12 c2 -8 -9 -12 -14 -4 z" fill="#F10180" />
+                        <circle cx="166" cy="40" r="5" fill="#7DBA24" />
+                    </svg>
+                    <p class="arte-num">Paso 4 de 5</p>
+                    <h3>Alguien de confianza</h3>
+                    <p>Un familiar o persona cercana a quien podamos contactar si es necesario.</p>
                 </div>
-
-                <div class="form-section">
-                    <h3 class="section-title"><span class="material-symbols-rounded">family_restroom</span> Referencia
-                        Familiar</h3>
-
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="referenciaNombre">
-                            <span>Nombre Referencia Familiar</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="text" class="input" id="referenciaParentesco">
-                            <span>Parentesco</span>
-                        </label>
-                    </div>
-                    <div class="flex">
-                        <label>
-                            <input required placeholder=" " type="tel" class="input" id="referenciaTelefono">
-                            <span>Teléfono Referencia</span>
-                        </label>
-                        <label>
-                            <input required placeholder=" " type="email" class="input" id="referenciaEmail">
-                            <span>Correo Referencia</span>
-                        </label>
-                    </div>
+                <div class="campos">
+                    <label class="field span-2">
+                        <span class="lbl">Nombre completo</span>
+                        <input required type="text" class="input" id="referenciaNombre" placeholder="Nombre y apellidos">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Parentesco</span>
+                        <input required type="text" class="input" id="referenciaParentesco" list="parentescoList" placeholder="Ej: Madre" autocomplete="off">
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Celular</span>
+                        <span class="pre"><em>+57</em><input required type="tel" class="input" id="referenciaTelefono" inputmode="numeric" placeholder="300 123 4567"></span>
+                    </label>
+                    <label class="field span-2">
+                        <span class="lbl">Correo electrónico</span>
+                        <input required type="email" class="input" id="referenciaEmail" placeholder="correo@ejemplo.com">
+                    </label>
                 </div>
+            </section>
 
-                <div class="form-section">
-                    <h3 class="section-title"><span class="material-symbols-rounded">chat</span> Cuéntanos sobre ti</h3>
-
-                    <div class="flex">
-                        <label>
-                            <textarea required placeholder=" " class="input textarea-input" id="motivacion"
-                                rows="2"></textarea>
-                            <span>¿Qué te motiva a estudiar este programa?</span>
-                        </label>
-                        <label>
-                            <textarea required placeholder=" " class="input textarea-input" id="preocupacion"
-                                rows="2"></textarea>
-                            <span>¿Qué te preocupa de entrar a la Universidad?</span>
-                        </label>
-                    </div>
+            <!-- PASO 5 -->
+            <section class="paso" data-titulo="Sobre ti" data-icono="forum" hidden>
+                <div class="arte">
+                    <svg viewBox="0 0 200 150" aria-hidden="true">
+                        <circle cx="100" cy="78" r="64" fill="#e5f6c8" />
+                        <path d="M36 44 h82 a12 12 0 0 1 12 12 v30 a12 12 0 0 1 -12 12 h-50 l-18 14 v-14 h-14 a12 12 0 0 1 -12 -12 v-30 a12 12 0 0 1 12 -12 z" fill="#fff" stroke="#0f2e14" stroke-width="3" />
+                        <rect x="48" y="60" width="62" height="7" rx="3.5" fill="#0f2e14" />
+                        <rect x="48" y="74" width="40" height="6" rx="3" fill="#0f2e14" opacity=".3" />
+                        <path d="M118 78 h40 a10 10 0 0 1 10 10 v20 a10 10 0 0 1 -10 10 h-6 v12 l-14 -12 h-20 a10 10 0 0 1 -10 -10 v-20 a10 10 0 0 1 10 -10 z" fill="#F10180" stroke="#0f2e14" stroke-width="3" />
+                        <circle cx="128" cy="98" r="3.5" fill="#fff" /><circle cx="140" cy="98" r="3.5" fill="#fff" /><circle cx="152" cy="98" r="3.5" fill="#fff" />
+                        <path d="M164 34 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" fill="#7DBA24" />
+                    </svg>
+                    <p class="arte-num">Paso 5 de 5</p>
+                    <h3>Ahora, cuéntanos de ti</h3>
+                    <p>No hay respuestas buenas ni malas. Queremos conocerte.</p>
                 </div>
-
-                <div class="submit-container">
-                    <button type="submit" class="submit">Enviar Registro</button>
+                <div class="campos">
+                    <label class="field span-2">
+                        <span class="lbl">¿Qué te motiva a estudiar este programa?</span>
+                        <textarea required class="input textarea" id="motivacion" rows="4" placeholder="Escribe con tus palabras…"></textarea>
+                    </label>
+                    <label class="field span-2">
+                        <span class="lbl">¿Qué te preocupa de entrar a la universidad?</span>
+                        <textarea required class="input textarea" id="preocupacion" rows="4" placeholder="Escribe con tus palabras…"></textarea>
+                    </label>
                 </div>
-            </form>
-        </div>
-    </div>
+            </section>
 
-    <!-- Datalists -->
+            <!-- Navegación -->
+            <div class="wz-nav">
+                <button type="button" class="btn-back" id="btnPrev"><span class="material-symbols-rounded">arrow_back</span><span class="txt">Atrás</span></button>
+                <p class="seguro"><span class="material-symbols-rounded">lock</span> Tus datos están protegidos</p>
+                <button type="button" class="btn-next" id="btnNext">Siguiente <span class="circle"><span class="material-symbols-rounded">arrow_forward</span></span></button>
+                <button type="submit" class="btn-next submit" id="btnSubmit" hidden>Enviar inscripción <span class="circle"><span class="material-symbols-rounded">send</span></span></button>
+            </div>
+        </form>
+
+        <!-- Pantalla final -->
+        <section class="fin" id="done" hidden>
+            <div class="confeti" aria-hidden="true"></div>
+            <div class="fin-badge"><span class="material-symbols-rounded">check</span></div>
+            <h2>¡Listo, <span id="doneName"></span>!</h2>
+            <p>Recibimos tu inscripción. Tu asesor te contactará muy pronto para el siguiente paso.</p>
+            <button type="button" class="btn-ghost" id="btnNuevo"><span class="material-symbols-rounded">person_add</span> Registrar otra persona</button>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <span>© 2026 Areandina · CSU Galán</span>
+        <span><span class="material-symbols-rounded">lock</span> Tus datos solo se usan para tu proceso de inscripción.</span>
+    </footer>
+
     <datalist id="epsList">
-        <option value="Sura"></option>
-        <option value="Sanitas"></option>
-        <option value="Compensar"></option>
-        <option value="Salud Total"></option>
-        <option value="Nueva EPS"></option>
-        <option value="Famisanar"></option>
-        <option value="Coosalud"></option>
-        <option value="Mutual Ser"></option>
-        <option value="Aliansalud"></option>
-        <option value="Comfenalco Valle"></option>
-        <option value="SOS EPS"></option>
-        <option value="Coomeva"></option>
-        <option value="Medimás"></option>
-        <option value="Cafesalud"></option>
-        <option value="Capital Salud"></option>
-        <option value="Savia Salud"></option>
-        <option value="Emssanar"></option>
-        <option value="Asmet Salud"></option>
-        <option value="Ecoopsos"></option>
-        <option value="Dusakawi"></option>
-        <option value="Anas Wayuu"></option>
-        <option value="Mallamas"></option>
-        <option value="Pijaos Salud"></option>
-        <option value="Convida"></option>
-        <option value="Cajacopi"></option>
-        <option value="Capresoca"></option>
-        <option value="Comfaoriente"></option>
-        <option value="Comfachocó"></option>
-        <option value="Comfamiliar Huila"></option>
-        <option value="Comfamiliar Nariño"></option>
-        <option value="Comfamiliar Cartagena"></option>
-        <option value="SISBEN / Subsidiado"></option>
-        <option value="Ninguna"></option>
-        <option value="Otra"></option>
+        <option value="Sura"></option><option value="Sanitas"></option><option value="Compensar"></option>
+        <option value="Salud Total"></option><option value="Nueva EPS"></option><option value="Famisanar"></option>
+        <option value="Coosalud"></option><option value="Mutual Ser"></option><option value="Aliansalud"></option>
+        <option value="Comfenalco Valle"></option><option value="SOS EPS"></option><option value="Coomeva"></option>
+        <option value="Medimás"></option><option value="Cafesalud"></option><option value="Capital Salud"></option>
+        <option value="Savia Salud"></option><option value="Emssanar"></option><option value="Asmet Salud"></option>
+        <option value="Ecoopsos"></option><option value="Dusakawi"></option><option value="Anas Wayuu"></option>
+        <option value="Mallamas"></option><option value="Pijaos Salud"></option><option value="Convida"></option>
+        <option value="Cajacopi"></option><option value="Capresoca"></option><option value="Comfaoriente"></option>
+        <option value="Comfachocó"></option><option value="Comfamiliar Huila"></option><option value="Comfamiliar Nariño"></option>
+        <option value="Comfamiliar Cartagena"></option><option value="SISBEN / Subsidiado"></option>
+        <option value="Ninguna"></option><option value="Otra"></option>
     </datalist>
-
+    <datalist id="parentescoList">
+        <option value="Madre"></option><option value="Padre"></option><option value="Hermano(a)"></option>
+        <option value="Abuelo(a)"></option><option value="Tío(a)"></option><option value="Esposo(a)"></option>
+        <option value="Pareja"></option><option value="Hijo(a)"></option><option value="Primo(a)"></option><option value="Amigo(a)"></option>
+    </datalist>
 
     <script>
         const carreras = {
@@ -377,61 +463,164 @@
             ]
         };
 
-        const nivelSelect = document.getElementById("nivel");
-        const carreraSelect = document.getElementById("carrera");
-        const tituloPregradoContainer = document.getElementById("tituloPregradoContainer");
-        const tituloPregradoInput = document.getElementById("tituloPregrado");
-        const senaPregunta = document.getElementById("senaPregunta");
-        const senaRow = document.getElementById("senaRow");
-        const esSenaSelect = document.getElementById("esSena");
-        const programaSenaLabel = document.getElementById("programaSenaLabel");
-        const programaSenaInput = document.getElementById("programaSena");
+        const $ = id => document.getElementById(id);
+        const form = $('registroForm');
+        const loader = $('loader');
+        const nivelSelect = $("nivel");
+        const carreraSelect = $("carrera");
+        const tituloPregradoContainer = $("tituloPregradoContainer");
+        const tituloPregradoInput = $("tituloPregrado");
+        const senaRow = $("senaRow");
+        const esSenaSelect = $("esSena");
+        const programaSenaLabel = $("programaSenaLabel");
+        const programaSenaInput = $("programaSena");
 
+        /* ---------- Botones de opción ---------- */
+        document.querySelectorAll('select[data-chips]').forEach(select => {
+            const grupo = document.createElement('div');
+            grupo.className = 'chips' + (select.dataset.chips === 'big' ? ' chips-big' : '');
+            grupo.setAttribute('role', 'radiogroup');
+            grupo.setAttribute('aria-labelledby', select.getAttribute('aria-labelledby'));
+            [...select.options].filter(o => o.value).forEach(o => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'chip';
+                b.dataset.value = o.value;
+                b.setAttribute('role', 'radio');
+                b.setAttribute('aria-checked', 'false');
+                b.innerHTML = o.dataset.icon
+                    ? `<span class="chip-ico material-symbols-rounded">${o.dataset.icon}</span><span class="chip-txt"><strong>${o.textContent}</strong><small>${o.dataset.sub || ''}</small></span><span class="chip-ok material-symbols-rounded">check</span>`
+                    : `<span>${o.textContent}</span>`;
+                b.addEventListener('click', () => {
+                    select.value = o.value;
+                    select.dispatchEvent(new Event('change', { bubbles: true }));
+                });
+                grupo.appendChild(b);
+            });
+            const pintar = () => grupo.querySelectorAll('.chip').forEach(b => {
+                const on = b.dataset.value === select.value;
+                b.classList.toggle('on', on);
+                b.setAttribute('aria-checked', on ? 'true' : 'false');
+            });
+            select.addEventListener('change', pintar);
+            select._pintar = pintar;
+            select.after(grupo);
+        });
+
+        /* ---------- Nivel, SENA y programa ---------- */
         nivelSelect.addEventListener("change", function () {
             const nivel = this.value;
-            carreraSelect.innerHTML = '<option value="" disabled selected></option>';
-            if (carreras[nivel]) {
-                carreras[nivel].forEach(c => {
-                    const option = document.createElement("option");
-                    option.value = c;
-                    option.textContent = c;
-                    carreraSelect.appendChild(option);
-                });
-            }
+            carreraSelect.innerHTML = '';
+            const vacia = document.createElement('option');
+            vacia.value = ''; vacia.disabled = true; vacia.selected = true;
+            vacia.textContent = nivel ? 'Elige tu programa' : 'Primero elige el nivel';
+            carreraSelect.appendChild(vacia);
+            (carreras[nivel] || []).forEach(c => {
+                const option = document.createElement("option");
+                option.value = c;
+                option.textContent = c;
+                carreraSelect.appendChild(option);
+            });
+            carreraSelect.disabled = !carreras[nivel];
+            const pos = nivel === "posgrado", pre = nivel === "pregrado";
+            tituloPregradoContainer.hidden = !pos;
+            tituloPregradoInput.required = pos;
+            senaRow.hidden = !pre;
+            esSenaSelect.required = pre;
+            aplicarSena();
+        });
+        function aplicarSena() {
+            const si = !senaRow.hidden && esSenaSelect.value === "si";
+            programaSenaLabel.hidden = !si;
+            programaSenaInput.required = si;
+        }
+        esSenaSelect.addEventListener("change", aplicarSena);
 
-            if (nivel === "posgrado") {
-                tituloPregradoContainer.style.display = "block";
-                tituloPregradoInput.setAttribute("required", "true");
-                senaPregunta.style.display = "none";
-                senaRow.style.display = "none";
-                programaSenaLabel.style.display = "none";
-            } else if (nivel === "pregrado") {
-                senaRow.style.display = "flex";
-                tituloPregradoContainer.style.display = "none";
-                tituloPregradoInput.removeAttribute("required");
-            }
+        /* ---------- Pasos ---------- */
+        const pasos = [...document.querySelectorAll('.paso')];
+        const pills = $('pills');
+        let actual = 0;
+
+        pasos.forEach((p, i) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<button type="button"><span class="pill-n">${i + 1}</span><span class="material-symbols-rounded pill-ok">check</span><span class="pill-t">${p.dataset.titulo}</span></button>`;
+            li.querySelector('button').addEventListener('click', () => irA(i));
+            pills.appendChild(li);
         });
 
-        esSenaSelect.addEventListener("change", function () {
-            if (this.value === "si") {
-                programaSenaLabel.style.display = "block";
-                programaSenaInput.setAttribute("required", "true");
-            } else {
-                programaSenaLabel.style.display = "none";
-                programaSenaInput.removeAttribute("required");
-            }
-        });
+        // ¿El campo está a la vista dentro de su paso? (ignora que el paso esté oculto)
+        function activo(el, paso) {
+            if (el.disabled) return false;
+            for (let n = el.parentElement; n && n !== paso; n = n.parentElement) if (n.hidden) return false;
+            return true;
+        }
+        function faltantes(i) {
+            return [...pasos[i].querySelectorAll('[required]')].filter(el => activo(el, pasos[i]) && !el.checkValidity());
+        }
+        function completo(i) { return faltantes(i).length === 0; }
 
-        function showToast(message) {
-            const container = document.getElementById('toastContainer');
+        function mostrar(i, dir) {
+            const antes = actual;
+            actual = i;
+            pasos.forEach((p, k) => {
+                p.hidden = k !== i;
+                p.classList.remove('entra-der', 'entra-izq');
+            });
+            pasos[i].classList.add((dir ?? (i >= antes ? 1 : -1)) > 0 ? 'entra-der' : 'entra-izq');
+            [...pills.children].forEach((li, k) => {
+                li.classList.toggle('activo', k === i);
+                li.classList.toggle('hecho', k !== i && completo(k));
+            });
+            $('progressBar').style.width = ((i + 1) / pasos.length * 100) + '%';
+            $('btnPrev').classList.toggle('oculto', i === 0);
+            const ultimo = i === pasos.length - 1;
+            $('btnNext').hidden = ultimo;
+            $('btnSubmit').hidden = !ultimo;
+        }
+
+        function marcarErrores(i) {
+            const malos = faltantes(i);
+            pasos[i].classList.toggle('intentado', malos.length > 0);
+            if (malos.length) {
+                const c = malos[0];
+                const caja = c.classList.contains('sr-select') ? c.closest('.choice') : c.closest('.field');
+                (caja || c).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (!c.classList.contains('sr-select')) setTimeout(() => c.focus({ preventScroll: true }), 350);
+                else { const chip = caja.querySelector('.chip'); if (chip) setTimeout(() => chip.focus({ preventScroll: true }), 350); }
+                pasos[i].classList.remove('sacude'); void pasos[i].offsetWidth; pasos[i].classList.add('sacude');
+            }
+            return malos.length === 0;
+        }
+
+        function irA(i) {
+            if (i <= actual) return mostrar(i, -1), subir();
+            for (let k = actual; k < i; k++) {
+                if (!completo(k)) { if (k !== actual) mostrar(k, 1); marcarErrores(k); return; }
+            }
+            mostrar(i, 1);
+            subir();
+        }
+        function subir() {
+            const top = form.getBoundingClientRect().top + window.scrollY - 16;
+            if (Math.abs(window.scrollY - top) > 40) window.scrollTo({ top, behavior: 'smooth' });
+        }
+
+        $('btnNext').addEventListener('click', () => irA(actual + 1));
+        $('btnPrev').addEventListener('click', () => irA(Math.max(0, actual - 1)));
+        form.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && e.target.tagName === 'INPUT' && actual < pasos.length - 1) { e.preventDefault(); irA(actual + 1); }
+        });
+        form.addEventListener('input', () => { if (pasos[actual].classList.contains('intentado')) pasos[actual].classList.toggle('intentado', !completo(actual)); });
+        form.addEventListener('change', () => { if (pasos[actual].classList.contains('intentado')) pasos[actual].classList.toggle('intentado', !completo(actual)); });
+
+        /* ---------- Envío (mismos datos de siempre) ---------- */
+        function showToast(message, tipo) {
             const toast = document.createElement('div');
-            toast.className = 'toast show';
+            toast.className = 'toast ' + (tipo || '');
             toast.textContent = message;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 4000);
+            $('toastContainer').appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 4500);
         }
 
         function formatDateToDDMMYYYY(dateString) {
@@ -443,11 +632,14 @@
             return dateString;
         }
 
-        const form = document.getElementById('registroForm');
-        const loader = document.getElementById('loader');
-
         form.addEventListener('submit', function (event) {
             event.preventDefault();
+            for (let k = 0; k < pasos.length; k++) {
+                if (!completo(k)) { if (k !== actual) mostrar(k, -1); marcarErrores(k); return; }
+            }
+            const boton = $('btnSubmit');
+            if (boton.disabled) return;
+            boton.disabled = true;
             loader.style.display = "flex";
 
             const data = {
@@ -490,16 +682,48 @@
             })
                 .then(() => {
                     loader.style.display = "none";
-                    showToast('✅ Registro enviado correctamente');
-                    form.reset();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    boton.disabled = false;
+                    $('doneName').textContent = data.nombre.trim().split(/\s+/)[0] || '';
+                    form.hidden = true;
+                    $('done').hidden = false;
+                    lanzarConfeti();
+                    $('done').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 })
                 .catch(error => {
                     loader.style.display = "none";
-                    showToast('❌ Error al enviar el formulario');
+                    boton.disabled = false;
+                    showToast('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.', 'error');
                     console.error(error);
                 });
         });
+
+        function lanzarConfeti() {
+            const caja = document.querySelector('.confeti');
+            caja.innerHTML = '';
+            const colores = ['#7DBA24', '#F10180', '#c7f36f', '#0f2e14', '#ffd9ec'];
+            for (let i = 0; i < 46; i++) {
+                const s = document.createElement('i');
+                s.style.left = Math.random() * 100 + '%';
+                s.style.background = colores[i % colores.length];
+                s.style.animationDelay = (Math.random() * .6) + 's';
+                s.style.animationDuration = (1.6 + Math.random() * 1.4) + 's';
+                s.style.transform = `rotate(${Math.random() * 360}deg)`;
+                caja.appendChild(s);
+            }
+        }
+
+        $('btnNuevo').addEventListener('click', () => {
+            form.reset();
+            pasos.forEach(p => p.classList.remove('intentado'));
+            document.querySelectorAll('select[data-chips]').forEach(s => s._pintar());
+            nivelSelect.dispatchEvent(new Event('change'));
+            $('done').hidden = true;
+            form.hidden = false;
+            mostrar(0, -1);
+            subir();
+        });
+
+        mostrar(0, 1);
     </script>
 
 </body>

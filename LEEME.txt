@@ -1,0 +1,27 @@
+NUEVO DISEÑO DEL FORMULARIO · CSU GALÁN
+
+Archivos que cambian:
+  - index.html  (nuevo diseño + misma lógica de envío)
+  - style.css   (nuevo diseño)
+
+Archivos que NO cambian (vienen en el zip solo por si acaso):
+  - Logo.png
+  - CNAME  (es el dominio csu-galan.csu.com.co, no lo borres)
+
+CÓMO SUBIRLO A GITHUB
+  1. Abre https://github.com/csu-galan/csu-galan.github.io
+  2. Add file > Upload files
+  3. Arrastra index.html y style.css (reemplazan a los actuales)
+  4. Abajo pulsa "Commit changes"
+  5. Espera 1 o 2 minutos y abre https://csu-galan.csu.com.co
+     (si ves el diseño viejo, recarga con Ctrl+Shift+R o abre en incógnito)
+
+GOOGLE SHEETS
+  - El formulario envía los mismos 29 datos, a la misma URL de Apps Script y en el
+    mismo formato que antes. No hay que tocar el Apps Script.
+  - Se guardan en la PRIMERA hoja (pestaña) del archivo, igual que siempre.
+    Si quieres que lleguen a la hoja "2027", ponla de primera (arrástrala a la izquierda).
+
+PRUEBA RECOMENDADA
+  Después de subirlo, llena una inscripción de prueba con tus datos y revisa que
+  aparezca la fila en el Sheets. Luego borra esa fila.
